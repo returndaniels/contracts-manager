@@ -1,0 +1,18 @@
+services:
+  api:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./contracts.db
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+      args:
+        VITE_API_URL: "http://ec2-18-219-23-220.us-east-2.compute.amazonaws.com:8000" # produção
+    ports:
+      - "80:80"
+    depends_on:
+      - api
