@@ -5,6 +5,9 @@ services:
       - "8000:8000"
     environment:
       - DATABASE_URL=sqlite:///./contracts.db
+    volumes:
+      - ./backend:/app
+      - db_data:/app/contracts.db
 
   web:
     build:
@@ -16,3 +19,6 @@ services:
       - "80:80"
     depends_on:
       - api
+
+volumes:
+  db_data:
