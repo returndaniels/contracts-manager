@@ -4,10 +4,10 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=sqlite:///./contracts.db
+      - DATABASE_URL=sqlite:///app/data/contracts.db
     volumes:
       - ./backend:/app
-      - db_data:/app/contracts.db
+      - db_data:/app/data
 
   web:
     build:
