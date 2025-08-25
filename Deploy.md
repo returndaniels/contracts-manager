@@ -41,6 +41,12 @@ docker-compose logs -f
 docker exec -it <nome_container> sh
 ```
 
+### 6. Rodar seeds no banco
+
+```bash
+docker-compose exec api python -m app.seed
+```
+
 ---
 
 ## Rodando em produção
@@ -81,13 +87,23 @@ docker-compose -f docker-compose.prod.yml logs -f
 docker exec -it <nome_container> sh
 ```
 
+### 5. Rodar seeds em produção
+
+```bash
+docker-compose -f docker-compose.prod.yml exec api python -m app.seed
+```
+
+---
+
 ### Resumo rápido
 
-| Cenário          | Comando                                                   |
-| ---------------- | --------------------------------------------------------- |
-| Subir dev        | `docker-compose up -d --build`                            |
-| Parar dev        | `docker-compose down`                                     |
-| Atualizar dev    | `git pull` + `docker-compose build`                       |
-| Subir produção   | `docker-compose -f docker-compose.prod.yml up -d --build` |
-| Logs produção    | `docker-compose -f docker-compose.prod.yml logs -f`       |
-| Entrar container | `docker exec -it <nome_container> sh`                     |
+| Cenário            | Comando                                                                 |
+| ------------------ | ----------------------------------------------------------------------- |
+| Subir dev          | `docker-compose up -d --build`                                          |
+| Parar dev          | `docker-compose down`                                                   |
+| Atualizar dev      | `git pull` + `docker-compose build`                                     |
+| Subir produção     | `docker-compose -f docker-compose.prod.yml up -d --build`               |
+| Logs produção      | `docker-compose -f docker-compose.prod.yml logs -f`                     |
+| Entrar container   | `docker exec -it <nome_container> sh`                                   |
+| Rodar seeds (dev)  | `docker-compose exec api python -m app.seed`                            |
+| Rodar seeds (prod) | `docker-compose -f docker-compose.prod.yml exec api python -m app.seed` |
