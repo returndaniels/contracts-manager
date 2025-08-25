@@ -50,10 +50,10 @@ export default function App() {
   });
   const [page, setPage] = useState(1);
 
-  function fetchData() {
+  function fetchData(currentFilters = filters) {
     setLoading(true);
     const params: any = { page, page_size: 10 };
-    Object.entries(filters).forEach(([k, v]) => {
+    Object.entries(currentFilters).forEach(([k, v]) => {
       if (v) params[k] = v;
     });
     api
@@ -69,7 +69,7 @@ export default function App() {
   function onSearch(newFilters: any) {
     setFilters(newFilters);
     setPage(1);
-    setTimeout(fetchData, 0);
+    fetchData(newFilters);
   }
 
   function onCreate() {
